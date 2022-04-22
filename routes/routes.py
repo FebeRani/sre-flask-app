@@ -1,14 +1,14 @@
-from config import app
+from config import hello
 from flask import jsonify,request
 from Model import employee,person
 
-@app.route("/Employee")
+@hello.route("/Employee")
 def getPeople():
     listp=employee.getEmployee()
     result = [x.serialize() for x in listp]
     return jsonify(result)
 
-    @app.route("/employee",methods=['POST'])
+    @hello.route("/employee",methods=['POST'])
     def addEmployee():
         input=request.get_json()
         employeeno=input['employeeno']
@@ -18,6 +18,3 @@ def getPeople():
         newitem=person(employeeno,name,city,desig)
         employee.addEmployee(newitem)
         return "item added successfully"
-
-
-    
